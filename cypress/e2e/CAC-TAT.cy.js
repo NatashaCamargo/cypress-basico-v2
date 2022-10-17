@@ -64,5 +64,37 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('.success').should('be.visible');
     })
 
+    it('seleciona um produto (YouTube) por seu texto', () => {
+        cy.get('#product')
+        .select('Youtube')
+        .should('have.value', 'youtube');
+    });
+
+    // it.only roda apenas esse teste
+    it('seleciona um produto (Mentoria) por seu valor (value)', () => {
+        cy.get('#product')
+        .select('mentoria')
+        .should('have.value', 'mentoria');
+    });
+
+    it('seleciona um produto (Mentoria) por seu valor (value)', () => {
+        cy.get('#product')
+        .select(1)
+        .should('have.value', 'blog');
+    });
+
+    it('marca o tipo de atendimento "Feedback"', () => {
+        cy.get('input[type="radio"][value="feedback"]').check();
+    });
+
+    it('marca cada tipo de atendimento', () => {
+        cy.get('input[type="radio"]')
+          .should('have.length')
+          .each(($radio) => {
+            cy.wrap($radio)
+              .check()
+              .should('be.checked');
+        });
+    });
   })
   
