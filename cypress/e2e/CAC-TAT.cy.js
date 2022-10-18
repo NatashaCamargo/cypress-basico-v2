@@ -96,5 +96,28 @@ describe('Central de Atendimento ao Cliente TAT', function() {
               .should('be.checked');
         });
     });
+
+    it('marca ambos checkboxes, depois desmarca o último', () => {
+        cy.get('iput[type="checkbox"]')
+          .check()
+          .should('be.checked')
+          .last()
+          .uncheck()
+          .should('be.unchecked');
+    })
+
+    it.only('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
+        cy.get('#firstName').type('Natasha').clear();
+        cy.get('#lastName').type('Camargo de Araujo').clear();
+        cy.get('#email').type('natashacamargodearaujo.com').clear();
+
+        cy.get('#phone-checkbox')
+          .check()
+          .should('be.checked');
+
+          cy.get('.button').contains('Enviar').click();
+        
+        cy.get('.error').should('be.visible');
+    });
   })
   
