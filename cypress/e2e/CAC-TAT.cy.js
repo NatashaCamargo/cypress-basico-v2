@@ -66,7 +66,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it('seleciona um produto (YouTube) por seu texto', () => {
         cy.get('#product')
-        .select('Youtube')
+        .select('youtube')
         .should('have.value', 'youtube');
     });
 
@@ -89,7 +89,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it('marca cada tipo de atendimento', () => {
         cy.get('input[type="radio"]')
-          .should('have.length')
+          .should('have.length', 3)
           .each(($radio) => {
             cy.wrap($radio)
               .check()
@@ -98,12 +98,11 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     });
 
     it('marca ambos checkboxes, depois desmarca o último', () => {
-        cy.get('iput[type="checkbox"]')
+        cy.get('input[type="checkbox"]')
           .check()
           .should('be.checked')
           .last()
           .uncheck()
-          .should('be.unchecked');
     })
 
     it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', () => {
