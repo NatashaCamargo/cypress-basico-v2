@@ -6,9 +6,9 @@ on:
     workflow_dispatch:
     branches:
       - main
-  # tests run every afternom
-  schedule:
-    - cron: '0 12 * * *'
+    # tests run every afternom
+    schedule:
+      - cron: '0 12 * * *'
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
