@@ -1,15 +1,14 @@
 name: End-to-end tests 🧪
 on:
+  # manual button click form the GitHUb UI
+  workflow_dispatch:
   # pushing commits to the main branch
   push:
-    # manual button click form the GitHUb UI
-    workflow_dispatch:
-    push:
-      branches:
-        - main
+    branches:
+      - main
     # tests run every afternom
-    schedule:
-      - cron: '0 12 * * *'
+  schedule:
+    - cron: '0 12 * * *'
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
