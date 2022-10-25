@@ -8,7 +8,7 @@ on:
       - main
     # tests run every afternom
   schedule:
-    - cron: '20 16 * * *'
+    - cron: '40 13 * * *'
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
