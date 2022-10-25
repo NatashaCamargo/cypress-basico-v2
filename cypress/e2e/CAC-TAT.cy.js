@@ -160,5 +160,23 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('a[href="privacy.html"]').invoke('removeAttr', 'target').click();
         cy.get('#white-background p').eq(0).contains('Não salvamos dados submetidos no formulário da aplicação CAC TAT.')
     })
+
+    it.only('exibe mensagem por 3 segundos', () => {
+
+        cy.get('#firstName').type('Natasha');
+        cy.get('#lastName').type('Camargo de Araujo');
+        cy.get('#email').type('natashacamargodearaujo@venustechstudio.com');
+        cy.get('#open-text-area').type('O que isso esta tentando me ensinar?', {delay: 0});
+        cy.get('.button').contains('Enviar').click();
+
+        cy.clock(); // congela o relogio do navegador
+
+        cy.get('.success').should('be.visible'); // verificação de que a mensagem está visível
+
+        cy.tick(3000); // avança o relógio três segundos (em milissegundos). Avanço este tempo para não perdê-lo esperando.
+
+        cy.get('span[style="display: none;"]').should('not.be.visible'); // verificação de que a mensagem não está mais visível
+        
+    })
   })
   

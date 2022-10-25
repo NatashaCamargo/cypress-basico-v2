@@ -1,4 +1,4 @@
-name: Specify Sec tests 🧪
+name: E2E 🧪
 on: [push]
 jobs:
   cypress-run:

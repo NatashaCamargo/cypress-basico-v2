@@ -1,5 +1,14 @@
 name: End-to-end tests 🧪
-on: [push]
+on:
+  # pushing commits to the main branch
+  push:
+    # manual button click form the GitHUb UI
+    workflow_dispatch:
+    branches:
+      - main
+  # tests run every afternom
+  schedule:
+    - cron: '0 12 * * *'
 jobs:
   cypress-run:
     runs-on: ubuntu-20.04
@@ -10,3 +19,5 @@ jobs:
         # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
