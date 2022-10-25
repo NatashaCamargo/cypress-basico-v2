@@ -4,8 +4,9 @@ on:
   push:
     # manual button click form the GitHUb UI
     workflow_dispatch:
-    branches:
-      - main
+    push:
+      branches:
+        - main
     # tests run every afternom
     schedule:
       - cron: '0 12 * * *'
